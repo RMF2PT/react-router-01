@@ -209,13 +209,35 @@ body {
 
 .PostPage button {
   height: 48px;
-  min-width: 48px;
+  min-width: 60px;
   border-radius: 0.25rem;
   padding: 0.5rem;
+  margin-right: 0.5rem;
   font-size: 1rem;
-  background-color: red;
   color: #fff;
   cursor: pointer;
+
+  &.deleteButton {
+    background-color: red;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  &.deleteButton:hover {
+    background-color: #fff;
+    color: red;
+  }
+
+  &.editButton {
+    background-color: #66d8f5;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  &.editButton:hover {
+    background-color: #fff;
+    color: #66d8f5;
+  }
 }
 
 .statusMsg {
