@@ -131,6 +131,7 @@ body {
 .Missing {
   width: 100%;
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
   padding: 1rem;
   overflow-y: auto;

@@ -1,7 +1,39 @@
-const NewPost = () => {
+type NewPostProps = {
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  postTitle: string;
+  setPostTitle: React.Dispatch<React.SetStateAction<string>>;
+  postBody: string;
+  setPostBody: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const NewPost = ({
+  handleSubmit,
+  postTitle,
+  setPostTitle,
+  postBody,
+  setPostBody,
+}: NewPostProps) => {
   return (
     <main className="NewPost">
-      <h1>New Post</h1>
+      <h2>New Post</h2>
+      <form className="newPostForm" onSubmit={handleSubmit}>
+        <label htmlFor="postTitle">Title:</label>
+        <input
+          type="text"
+          id="postTitle"
+          required
+          value={postTitle}
+          onChange={(e) => setPostTitle(e.target.value)}
+        />
+        <label htmlFor="postBody">Post:</label>
+        <textarea
+          id="postBody"
+          required
+          value={postBody}
+          onChange={(e) => setPostBody(e.target.value)}
+        />
+        <button type="submit">Submit</button>
+      </form>
     </main>
   );
 };

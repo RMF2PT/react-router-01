@@ -15,7 +15,7 @@ function App() {
       id: 1,
       title: "React Router",
       datetime: "2023-01-01 10:00:00",
-      body: "A router for React",
+      body: "A router for React lorem ipsum dolor sit amet consectetur adipisicing elit.",
     },
     {
       id: 2,
@@ -31,16 +31,62 @@ function App() {
     },
   ]);
   const [search, setSearch] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([] as typeof posts);
+  const [postTitle, setPostTitle] = useState("");
+  const [postBody, setPostBody] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const results = posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(search.toLowerCase()) ||
+        post.body.toLowerCase().includes(search.toLowerCase())
+    );
+    setSearchResults(results.reverse());
+  }, [search, posts]);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newPost = {
+      id: posts.length + 1,
+      title: postTitle,
+      datetime: new Date().toLocaleString(),
+      body: postBody,
+    };
+    setPosts([...posts, newPost]);
+    setPostTitle("");
+    setPostBody("");
+    navigate("/");
+  };
+
+  const handleDelete = (id: number) => {
+    setPosts(posts.filter((post) => post.id !== id));
+    navigate("/");
+  };
 
   return (
     <>
       <Header title="React Router" />
       <Nav search={search} setSearch={setSearch} />
       <Routes>
-        <Route path="/" element={<Home posts={posts} />} />
-        <Route path="/new" element={<NewPost />} />
-        <Route path="/posts/:id" element={<PostPage />} />
+        <Route path="/" element={<Home posts={searchResults} />} />
+        <Route
+          path="/new"
+          element={
+            <NewPost
+              handleSubmit={handleSubmit}
+              postTitle={postTitle}
+              setPostTitle={setPostTitle}
+              postBody={postBody}
+              setPostBody={setPostBody}
+            />
+          }
+        />
+        <Route
+          path="/posts/:id"
+          element={<PostPage posts={posts} handleDelete={handleDelete} />}
+        />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<MissingPage />} />
       </Routes>

@@ -1,4 +1,4 @@
-import FeedLine from "./FeedLine";
+import Post from "./Post";
 
 type FeedProps = {
   posts: {
@@ -11,11 +11,11 @@ type FeedProps = {
 
 const Feed = ({ posts }: FeedProps) => {
   return (
-    <ul className="posts">
+    <>
       {posts.map((post) => (
-        <FeedLine key={post.id} post={post} />
+        <Post key={post.id} post={post} />
       ))}
-    </ul>
+    </>
   );
 };
 export default Feed;
