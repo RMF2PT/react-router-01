@@ -11,27 +11,22 @@ html {
 }
 
 body {
-  min-height: 100vh;
   font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #efefef;
+  display: flex;
+  justify-content: center;
 }
 
 #root {
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 100vh;
-}
-
-.App {
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  max-width: 600px;
   border: 1px solid #333;
   box-shadow: 0px 0px 15px gray;
 }
@@ -170,10 +165,10 @@ body {
   margin: 1rem 0;
 }
 
-.newPostForm {
+/* .newPostForm {
   display: flex;
   flex-direction: column;
-}
+} */
 
 .newPostForm label {
   margin-top: 1rem;
